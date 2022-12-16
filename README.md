@@ -29,3 +29,5 @@ console.log(sum(1, 2));
 [Tutorial](https://janessagarrow.com/blog/typescript-and-esbuild/)
 
 [Eslint setup](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)
+
+[Package at NPM](https://www.npmjs.com/package/@adambirse123/try-esbuild-typescript)
