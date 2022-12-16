@@ -1,6 +1,6 @@
 # Try esbuild and Typescript
 
-A sample repository to try out esbuild.
+A sample repository to try out esbuild and npm publish.
 
 ## Building and publishing
 
@@ -23,3 +23,9 @@ const { sum } = require("@adambirse123/try-esbuild-typescript");
 console.log(sum(1, 2));
 
 ```
+
+## Useful reference material
+
+[Tutorial](https://janessagarrow.com/blog/typescript-and-esbuild/)
+
+[Eslint setup](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)
