@@ -8,6 +8,7 @@ A sample repository to try out esbuild.
     npm run test
     npm run build
     npm login
+    npm version <new_version>
     npm publish
 
 ## Installation
