@@ -21,7 +21,8 @@ A sample repository to try out esbuild and npm publish.
 const { sum } = require("@adambirse123/try-esbuild-typescript");
 
 console.log(sum(1, 2));
-
+console.log(sum(-1, 2, -10));
+console.log(sum());
 ```
 
 ## Useful reference material
