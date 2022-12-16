@@ -1,6 +1,6 @@
 {
   "name": "@adambirse123/try-esbuild-typescript",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Adam Birse",
   "description": "A module for some very basic maths",
   "files": [
