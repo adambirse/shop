@@ -2,13 +2,23 @@
 
 A sample repository to try out esbuild.
 
+## Building and publishing
 
-## Commands
     npm i
     npm run test
     npm run build
-
-## Publishing
-
     npm login
     npm publish
+
+## Installation
+
+    npm i @adambirse123/try-esbuild-typescript
+
+## Usage
+
+```
+const { sum } = require("@adambirse123/try-esbuild-typescript");
+
+console.log(sum(1, 2));
+
+```
