@@ -1,8 +1,8 @@
 {
-  "name": "@adambirse123/try-esbuild-typescript",
+  "name": "@adambirse123/shop",
   "version": "1.1.0",
   "author": "Adam Birse",
-  "description": "A module for some very basic maths",
+  "description": "A module for a shop",
   "files": [
     "dist/*"
   ],
