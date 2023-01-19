@@ -31,14 +31,14 @@ describe('Warehouse', () => {
     expect(warehouse.getProducts().length).toBe(2);
   });
 });
+
 function createProducts(noOfProducts: number): Product[] {
-  const products: Product[] = [];
-  for (let x = 0; x < noOfProducts; x++) {
-    products.push({
-      name: 'name',
-      cost: 3.45,
-      description: 'description',
-    });
-  }
-  return products;
+  //map function that takes value(_x) and position i and creates object
+  const array: Product[] = Array.from({ length: noOfProducts }, (_x, i) => ({
+    name: `name ${i}`,
+    cost: 12.34,
+    description: `description ${i}`,
+  }));
+
+  return array;
 }
