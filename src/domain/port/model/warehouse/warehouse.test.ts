@@ -1,6 +1,6 @@
 import { Warehouse } from './warehouse';
 import { Product } from '../product/product';
-import { StorageError } from './StorageError';
+import { StorageError } from '../../errors/warehouse/StorageError';
 describe('Warehouse', () => {
   const products: Product[] = createProducts(2);
   it('Can create a warehouse', () => {

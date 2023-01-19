@@ -1,5 +1,5 @@
 import { Product } from '../product/product';
-import { StorageError } from './StorageError';
+import { StorageError } from '../../errors/warehouse/StorageError';
 
 export class Warehouse {
   DEFAULT_CAPACITY = 10;
