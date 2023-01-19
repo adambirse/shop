@@ -20,6 +20,7 @@
     "version": "npm run prettier && git add -A src",
     "build": "node build.js",
     "test": "jest --config jest.config.js",
+    "test:watch": "jest --watch --config jest.config.js",
     "prettier": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
