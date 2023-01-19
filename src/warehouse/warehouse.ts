@@ -8,4 +8,7 @@ export class Warehouse {
   getProducts(): string[] {
     return this.products;
   }
+  add(product: string) {
+    this.products = this.products.concat(product);
+  }
 }
