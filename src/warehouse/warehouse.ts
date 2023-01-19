@@ -1,4 +1,5 @@
 import { Product } from '../product/product';
+import { StorageError } from './StorageError';
 
 export class Warehouse {
   DEFAULT_CAPACITY = 10;
@@ -10,7 +11,7 @@ export class Warehouse {
     if (products.length <= this.capacity) {
       this.products = products;
     } else {
-      throw new Error('Capacity exceeded');
+      throw new StorageError('Capacity exceeded');
     }
   }
 
@@ -21,7 +22,7 @@ export class Warehouse {
     if (this.hasCapacity()) {
       this.products = this.products.concat(product);
     } else {
-      throw new Error('Warehouse full');
+      throw new StorageError('Warehouse full');
     }
   }
   private hasCapacity() {

@@ -1,5 +1,6 @@
 import { Warehouse } from './warehouse';
 import { Product } from '../product/product';
+import { StorageError } from './StorageError';
 describe('Warehouse', () => {
   const products: Product[] = createProducts(2);
   it('Can create a warehouse', () => {
@@ -11,7 +12,7 @@ describe('Warehouse', () => {
   });
 
   it('Can not create a warehouse if capacity is exceeded', () => {
-    expect(() => new Warehouse(products, 1)).toThrow(Error);
+    expect(() => new Warehouse(products, 1)).toThrow(StorageError);
   });
   it('Can get products from warehouse', () => {
     const warehouse = new Warehouse(products);
@@ -27,7 +28,7 @@ describe('Warehouse', () => {
 
   it('Cannot add products if capacity exceeded', () => {
     const warehouse = new Warehouse(products, 2);
-    expect(() => warehouse.add(createProducts(1)[0])).toThrow(Error);
+    expect(() => warehouse.add(createProducts(1)[0])).toThrow(StorageError);
     expect(warehouse.getProducts().length).toBe(2);
   });
 });
