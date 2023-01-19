@@ -1,9 +1,11 @@
+import { Product } from '../product/product';
+
 export class Warehouse {
   DEFAULT_CAPACITY = 10;
-  products: string[];
+  products: Product[];
   capacity: number;
 
-  constructor(products: string[], capacity?: number) {
+  constructor(products: Product[], capacity?: number) {
     this.capacity = capacity || this.DEFAULT_CAPACITY;
     if (products.length <= this.capacity) {
       this.products = products;
@@ -12,10 +14,10 @@ export class Warehouse {
     }
   }
 
-  getProducts(): string[] {
+  getProducts(): Product[] {
     return this.products;
   }
-  add(product: string) {
+  add(product: Product) {
     if (this.hasCapacity()) {
       this.products = this.products.concat(product);
     } else {
