@@ -1,6 +1,6 @@
 import { Product } from './product';
 describe('Product', () => {
-  it('Can create a produ ct', () => {
+  it('Can create a product', () => {
     const product = new Product('name', 3.45, 'A cheap product');
     expect(product).toBeDefined();
     expect(product.name).toBe('name');
