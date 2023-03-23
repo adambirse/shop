@@ -1,5 +1,5 @@
-import { create } from '../../../factory/warehouseFactory';
 import { InMemoryWarehouseRepository } from './inMemoryWarehouseRepository';
+import { create } from '../../domain/factory/warehouseFactory';
 
 describe('In Mermory warehouse repository', () => {
   const repository = new InMemoryWarehouseRepository();
