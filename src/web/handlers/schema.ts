@@ -8,3 +8,11 @@ export const warehouseCreateSchema = {
     },
   },
 };
+
+export const warehouseGetSchema = {
+  schema: {
+    response: {
+      200: WarehouseResponse,
+    },
+  },
+};
