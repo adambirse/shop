@@ -6,10 +6,10 @@ export function warehouseCreateHandler() {
   return (request, reply) => {
     const { capacity } = request.body;
     console.log(capacity);
-    service.createWarehouse(capacity);
+    const warehouse = service.createWarehouse(capacity);
     reply.status(200).send({
-      capacity: capacity,
-      id: 1,
+      capacity: warehouse.capacity,
+      id: warehouse.id,
     });
   };
 }

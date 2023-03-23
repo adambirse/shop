@@ -1,17 +1,18 @@
-import { Product } from '../../../domain/port/model/product/product';
 import { Warehouse } from '../../../domain/port/model/warehouse/warehouse';
 import { WarehouseRepository } from '../../../domain/port/model/warehouse/warehouseRepository';
 
 export class InMemoryWarehouseRepository implements WarehouseRepository {
-  private warehouse;
-  add(product: Product) {
-    this.warehouse.add(product);
+  private warehouses: Warehouse[];
+
+  constructor() {
+    this.warehouses = [];
   }
-  getAll(): Product[] {
-    return this.warehouse.getProducts();
+  save(warehouse: Warehouse): Warehouse {
+    this.warehouses.push(warehouse);
+    return warehouse;
   }
-  create(capacity: number): Warehouse {
-    this.warehouse = new Warehouse([], capacity);
-    return this.warehouse;
+
+  get(id: string): Warehouse | undefined {
+    return this.warehouses.find((warehouse) => warehouse.id == id);
   }
 }

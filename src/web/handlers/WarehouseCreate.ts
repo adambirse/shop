@@ -5,7 +5,7 @@ export const Warehouse = Type.Object({
 });
 
 export const WarehouseResponse = Type.Object({
-  id: Type.Number(),
+  id: Type.String(),
   capacity: Type.Number(),
 });
 

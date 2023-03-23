@@ -1,6 +1,8 @@
 import { Operations } from '../domain/operations';
 import { Product } from '../domain/port/model/product/product';
+import { Warehouse } from '../domain/port/model/warehouse/warehouse';
 import { WarehouseRepository } from '../domain/port/model/warehouse/warehouseRepository';
+import { create } from '../factory/warehouseFactory';
 import { InMemoryWarehouseRepository } from './adaptor/repository/inMemoryWarehouseRepository';
 
 export class WarehouseService implements Operations {
@@ -9,12 +11,22 @@ export class WarehouseService implements Operations {
   constructor() {
     this.warehouseRepository = new InMemoryWarehouseRepository();
   }
-  save(product: Product): Product[] {
-    this.warehouseRepository.add(product);
-    return this.warehouseRepository.getAll();
+  getWarehouse(id: string): Warehouse | undefined {
+    return this.warehouseRepository.get(id);
+  }
+  save(id: string, product: Product): Product[] {
+    const warehouse = this.warehouseRepository.get(id);
+    if (warehouse) {
+      warehouse.add(product);
+      this.warehouseRepository.save(warehouse);
+      return warehouse.getProducts();
+    }
+
+    return [];
   }
 
-  createWarehouse(capacity: number): void {
-    this.warehouseRepository.create(capacity);
+  createWarehouse(capacity: number): Warehouse {
+    const warehouse = create(capacity);
+    return this.warehouseRepository.save(warehouse);
   }
 }
