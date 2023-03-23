@@ -5,10 +5,12 @@ import { WarehouseCreate, WarehouseResponse } from './adaptor/web/handlers/Wareh
 import { warehouseCreateSchema, warehouseGetSchema } from './adaptor/web/handlers/schema';
 import { warehouseCreateHandler } from './adaptor/web/handlers/warehouseCreateHandler';
 import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler';
-import { WarehouseService } from './domain/service/warehouseService';
+import { WarehouseService } from './service/warehouseService';
+import { InMemoryWarehouseRepository } from './adaptor/repository/inMemoryWarehouseRepository';
 
 const server = Fastify().withTypeProvider<TypeBoxTypeProvider>();
-const service = new WarehouseService();
+const warehouseRepository = new InMemoryWarehouseRepository();
+const service = new WarehouseService(warehouseRepository);
 
 server.post<{ Body: WarehouseCreate; Reply: WarehouseResponse }>(
   '/warehouse',

@@ -1,15 +1,16 @@
-import { Operations } from '../operations';
-import { Product } from '../model/product/product';
-import { Warehouse } from '../model/warehouse/warehouse';
-import { WarehouseRepository } from '../repository/warehouseRepository';
-import { create } from '../factory/warehouseFactory';
-import { InMemoryWarehouseRepository } from '../../adaptor/repository/inMemoryWarehouseRepository';
+import { Operations } from '../domain/operations';
+import { Product } from '../domain/model/product/product';
+import { Warehouse } from '../domain/model/warehouse/warehouse';
+import { WarehouseRepository } from '../domain/repository/warehouseRepository';
+import { create } from '../domain/factory/warehouseFactory';
 
+// Should never depend on concrete implementations.
+// All imports should be from domain/**
 export class WarehouseService implements Operations {
   private warehouseRepository: WarehouseRepository;
 
-  constructor() {
-    this.warehouseRepository = new InMemoryWarehouseRepository();
+  constructor(warehouseRepository: WarehouseRepository) {
+    this.warehouseRepository = warehouseRepository;
   }
   getWarehouse(id: string): Warehouse | undefined {
     return this.warehouseRepository.get(id);
