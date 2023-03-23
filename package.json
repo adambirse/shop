@@ -27,6 +27,8 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@fastify/type-provider-typebox": "^2.4.0",
+    "@sinclair/typebox": "^0.25.9",
     "fastify": "^4.15.0"
   }
 }
