@@ -7,6 +7,6 @@ import { Warehouse } from './model/warehouse/warehouse';
 // They will be implemented by sone or more Services
 export interface Operations {
   createWarehouse(capacity: number): Warehouse;
-  getWarehouse(id: string): Warehouse | undefined;
+  getWarehouse(id: string): Warehouse;
   save(id: string, product: Product): Product[];
 }
