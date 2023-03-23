@@ -1,5 +1,5 @@
-import { Warehouse } from '../../../domain/port/model/warehouse/warehouse';
-import { WarehouseRepository } from '../../../domain/port/model/warehouse/warehouseRepository';
+import { Warehouse } from '../../domain/model/warehouse/warehouse';
+import { WarehouseRepository } from '../../domain/repository/warehouseRepository';
 
 export class InMemoryWarehouseRepository implements WarehouseRepository {
   private warehouses: Warehouse[];

@@ -1,11 +1,11 @@
 import Fastify from 'fastify';
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 
-import { WarehouseCreate, WarehouseResponse } from './web/handlers/WarehouseCreate';
-import { warehouseCreateSchema, warehouseGetSchema } from './web/handlers/schema';
-import { warehouseCreateHandler } from './web/handlers/warehouseCreateHandler';
-import { warehouseGetHandler } from './web/handlers/warehouseGetHandler';
-import { WarehouseService } from './service/warehouseService';
+import { WarehouseCreate, WarehouseResponse } from './adaptor/web/handlers/WarehouseCreate';
+import { warehouseCreateSchema, warehouseGetSchema } from './adaptor/web/handlers/schema';
+import { warehouseCreateHandler } from './adaptor/web/handlers/warehouseCreateHandler';
+import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler';
+import { WarehouseService } from './domain/service/warehouseService';
 
 const server = Fastify().withTypeProvider<TypeBoxTypeProvider>();
 const service = new WarehouseService();

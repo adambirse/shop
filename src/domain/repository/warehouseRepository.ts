@@ -1,4 +1,4 @@
-import { Warehouse } from './warehouse';
+import { Warehouse } from '../model/warehouse/warehouse';
 
 export interface WarehouseRepository {
   save(warehouse: Warehouse): Warehouse;

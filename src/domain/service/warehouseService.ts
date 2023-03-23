@@ -1,9 +1,9 @@
-import { Operations } from '../domain/operations';
-import { Product } from '../domain/port/model/product/product';
-import { Warehouse } from '../domain/port/model/warehouse/warehouse';
-import { WarehouseRepository } from '../domain/port/model/warehouse/warehouseRepository';
+import { Operations } from '../operations';
+import { Product } from '../model/product/product';
+import { Warehouse } from '../model/warehouse/warehouse';
+import { WarehouseRepository } from '../repository/warehouseRepository';
 import { create } from '../factory/warehouseFactory';
-import { InMemoryWarehouseRepository } from './adaptor/repository/inMemoryWarehouseRepository';
+import { InMemoryWarehouseRepository } from '../../adaptor/repository/inMemoryWarehouseRepository';
 
 export class WarehouseService implements Operations {
   private warehouseRepository: WarehouseRepository;

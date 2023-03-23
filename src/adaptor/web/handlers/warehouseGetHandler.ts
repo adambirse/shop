@@ -1,4 +1,4 @@
-import { WarehouseService } from '../../service/warehouseService';
+import { WarehouseService } from '../../../domain/service/warehouseService';
 
 export function warehouseGetHandler(service: WarehouseService) {
   return (request, reply) => {
