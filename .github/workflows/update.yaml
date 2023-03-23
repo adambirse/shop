@@ -1,0 +1,33 @@
+name: update
+
+on:
+  schedule:
+    - cron: 0 0 * * 1
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - name: update
+        run: |
+          npm install
+          npm update
+          npm run build
+          npm test
+        env:
+          CI: false
+      - name: commit update
+        run: |
+          if ! git diff --quiet --exit-code ; then
+            git config --local user.email "auto@primednumber.com"
+            git config --local user.name "Update bot"
+            git commit -am "Auto-update"
+            git push
+          fi
