@@ -33,6 +33,4 @@ curl localhost:8080/warehouse/cc2c630c-8ea8-44e9-9ea2-f2f1b07d3dc4
 
 ## TODO
 
-- retrieve services from builder singleton
-- refactor handler functions
 - unit test handler functions
