@@ -18,7 +18,7 @@ export class WarehouseService implements Operations {
       return warehouse;
     } catch (e) {
       console.log(`Unable to retrieve model with id ${id}`);
-      throw new ModelNotFound(`Unable to retrieve model with id ${id}`);
+      throw new ModelNotFound(`Unable to retrieve model with id - ${id}`);
     }
   }
 
