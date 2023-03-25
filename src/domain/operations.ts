@@ -1,4 +1,3 @@
-import { Product } from './model/product/product';
 import { Warehouse } from './model/warehouse/warehouse';
 
 // An interface describing the domain operations this business domain supports.
@@ -6,7 +5,6 @@ import { Warehouse } from './model/warehouse/warehouse';
 // as they represent concepts the business defines, rather than developers.
 // They will be implemented by sone or more Services
 export interface Operations {
-  createWarehouse(capacity: number): Warehouse;
-  getWarehouse(id: string): Warehouse;
-  save(id: string, product: Product): Product[];
+  createWarehouse(capacity: number): Promise<Warehouse>;
+  getWarehouse(id: string): Promise<Warehouse>;
 }

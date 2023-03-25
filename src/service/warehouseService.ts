@@ -1,5 +1,4 @@
 import { Operations } from '../domain/operations';
-import { Product } from '../domain/model/product/product';
 import { Warehouse } from '../domain/model/warehouse/warehouse';
 import { WarehouseRepository } from '../domain/repository/warehouseRepository';
 import { create } from '../domain/factory/warehouseFactory';
@@ -13,26 +12,18 @@ export class WarehouseService implements Operations {
   constructor(warehouseRepository: WarehouseRepository) {
     this.warehouseRepository = warehouseRepository;
   }
-  getWarehouse(id: string): Warehouse {
-    const warehouse = this.warehouseRepository.get(id);
-    if (!warehouse) {
+  async getWarehouse(id: string): Promise<Warehouse> {
+    try {
+      const warehouse = await this.warehouseRepository.get(id);
+      return warehouse;
+    } catch (e) {
+      console.log(`Unable to retrieve model with id ${id}`);
       throw new ModelNotFound(`Unable to retrieve model with id ${id}`);
     }
-    return warehouse;
-  }
-  save(id: string, product: Product): Product[] {
-    const warehouse = this.warehouseRepository.get(id);
-    if (warehouse) {
-      warehouse.add(product);
-      this.warehouseRepository.save(warehouse);
-      return warehouse.getProducts();
-    }
-
-    return [];
   }
 
-  createWarehouse(capacity: number): Warehouse {
+  async createWarehouse(capacity: number): Promise<Warehouse> {
     const warehouse = create(capacity);
-    return this.warehouseRepository.save(warehouse);
+    return await this.warehouseRepository.save(warehouse);
   }
 }

@@ -1,9 +1,9 @@
 import { WarehouseService } from '../../../service/warehouseService';
 
 export function warehouseCreateHandler(service: WarehouseService) {
-  return (request, reply) => {
+  return async (request, reply) => {
     const { capacity } = request.body;
-    const warehouse = service.createWarehouse(capacity);
+    const warehouse = await service.createWarehouse(capacity);
     reply.status(200).send({
       capacity: warehouse.capacity,
       id: warehouse.id,

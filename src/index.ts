@@ -6,12 +6,12 @@ import { warehouseCreateSchema, warehouseGetSchema } from './adaptor/web/handler
 import { warehouseCreateHandler } from './adaptor/web/handlers/warehouseCreateHandler';
 import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler';
 import { WarehouseService } from './service/warehouseService';
-import { InMemoryWarehouseRepository } from './adaptor/repository/inMemoryWarehouseRepository';
 import { ModelNotFound } from './domain/errors/ModelNotFoundError';
 import { initialiseDB } from './adaptor/typeORMRepository/data-source';
+import { WarehouseTypeORMRepository } from './adaptor/typeORMRepository/repository/warehouseTypeORMRepository';
 
 const server = Fastify().withTypeProvider<TypeBoxTypeProvider>();
-const warehouseRepository = new InMemoryWarehouseRepository();
+const warehouseRepository = new WarehouseTypeORMRepository();
 const service = new WarehouseService(warehouseRepository);
 
 server.setErrorHandler(function (error, _request, reply) {

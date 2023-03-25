@@ -7,6 +7,6 @@ import { Warehouse } from '../model/warehouse/warehouse';
 // content of the object.  The repository is solely concerned with
 // moving the data into and out of the persistence engine correctly.
 export interface WarehouseRepository {
-  save(warehouse: Warehouse): Warehouse;
-  get(id: string): Warehouse | undefined;
+  save(warehouse: Warehouse): Promise<Warehouse>;
+  get(id: string): Promise<Warehouse>;
 }

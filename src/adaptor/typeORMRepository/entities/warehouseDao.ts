@@ -10,4 +10,9 @@ export class WarehouseDao {
 
   @Column()
   capacity!: number;
+
+  constructor(domainId: string, capacity: number) {
+    this.domainId = domainId;
+    this.capacity = capacity;
+  }
 }
