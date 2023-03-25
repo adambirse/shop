@@ -8,6 +8,7 @@ import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler'
 import { WarehouseService } from './service/warehouseService';
 import { InMemoryWarehouseRepository } from './adaptor/repository/inMemoryWarehouseRepository';
 import { ModelNotFound } from './domain/errors/ModelNotFoundError';
+import { initialiseDB } from './adaptor/typeORMRepository/data-source';
 
 const server = Fastify().withTypeProvider<TypeBoxTypeProvider>();
 const warehouseRepository = new InMemoryWarehouseRepository();
@@ -35,5 +36,6 @@ server.listen({ port: 8080 }, (err, address) => {
     console.error(err);
     process.exit(1);
   }
+  initialiseDB();
   console.log(`Server listening at ${address}`);
 });
