@@ -1,8 +1,9 @@
-import { WarehouseService } from '../../../service/warehouseService';
+import { serviceConfiguration } from '../../../service/serviceConfiguration';
 
-export function warehouseGetHandler(service: WarehouseService) {
+export function warehouseGetHandler() {
   return async (request, reply) => {
     const { id } = request.params;
+    const service = serviceConfiguration().warehouseService;
     const warehouse = await service.getWarehouse(id);
     //TODO convert to DTO
     reply.status(200).send({

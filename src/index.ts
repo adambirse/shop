@@ -5,14 +5,10 @@ import { WarehouseCreate, WarehouseResponse } from './adaptor/web/handlers/Wareh
 import { warehouseCreateSchema, warehouseGetSchema } from './adaptor/web/handlers/schema';
 import { warehouseCreateHandler } from './adaptor/web/handlers/warehouseCreateHandler';
 import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler';
-import { WarehouseService } from './service/warehouseService';
 import { ModelNotFound } from './domain/errors/ModelNotFoundError';
 import { initialiseDB } from './adaptor/typeORMRepository/data-source';
-import { WarehouseTypeORMRepository } from './adaptor/typeORMRepository/repository/warehouseTypeORMRepository';
 
 const server = Fastify().withTypeProvider<TypeBoxTypeProvider>();
-const warehouseRepository = new WarehouseTypeORMRepository();
-const service = new WarehouseService(warehouseRepository);
 
 server.setErrorHandler(function (error, _request, reply) {
   if (error instanceof ModelNotFound) {
@@ -26,10 +22,10 @@ server.setErrorHandler(function (error, _request, reply) {
 server.post<{ Body: WarehouseCreate; Reply: WarehouseResponse }>(
   '/warehouse',
   warehouseCreateSchema,
-  warehouseCreateHandler(service),
+  warehouseCreateHandler(),
 );
 
-server.get<{ Reply: WarehouseResponse }>('/warehouse/:id', warehouseGetSchema, warehouseGetHandler(service));
+server.get<{ Reply: WarehouseResponse }>('/warehouse/:id', warehouseGetSchema, warehouseGetHandler());
 
 server.listen({ port: 8080 }, (err, address) => {
   if (err) {
