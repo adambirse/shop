@@ -2,6 +2,8 @@
 
 A sample Hexagonal architecture
 
+[Hexagonal Architecture concepts](concepts.md)
+
 ## Building and Running
 
     npm i
