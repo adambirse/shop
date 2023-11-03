@@ -9,7 +9,12 @@ export const WarehouseResponse = Type.Object({
   capacity: Type.Number(),
 });
 
+export const ProductRequest = Type.Object({
+  id: Type.String(),
+});
+
 //Requests
 export type WarehouseCreate = Static<typeof Warehouse>;
+export type ProductCreate = Static<typeof ProductRequest>;
 //Responses
 export type WarehouseResponse = Static<typeof Warehouse>;
