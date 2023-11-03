@@ -8,7 +8,7 @@ import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler'
 import { ModelNotFound } from './domain/errors/ModelNotFoundError';
 import { initialiseDB } from './adaptor/typeORMRepository/data-source';
 
-const server = Fastify().withTypeProvider<TypeBoxTypeProvider>();
+const server = Fastify({ logger: true }).withTypeProvider<TypeBoxTypeProvider>();
 
 server.setErrorHandler(function (error, _request, reply) {
   if (error instanceof ModelNotFound) {
