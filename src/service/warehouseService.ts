@@ -14,7 +14,7 @@ export class WarehouseService implements Operations {
     this.warehouseRepository = warehouseRepository;
   }
   async addProduct(warehouseId: string, request: AddProductRequest): Promise<Warehouse> {
-    const warehouse = await this.warehouseRepository.get(warehouseId);
+    const warehouse = await this.getWarehouse(warehouseId);
     warehouse.add({
       name: request.name,
       description: request.description,
