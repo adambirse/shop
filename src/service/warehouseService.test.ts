@@ -33,7 +33,25 @@ describe('Warehouse service', () => {
     );
   });
   it('get warehouse success', async () => {
+    warehouseRepository = {
+      get: jest.fn(() => Promise.resolve(warehouse)),
+      save: jest.fn(() => Promise.resolve(warehouse)),
+    };
     const retrievedWarehouse = await warehouseService.getWarehouse('found');
     expect(retrievedWarehouse).toMatchObject<Warehouse>(warehouse);
+  });
+  it('can save product in warehouse', async () => {
+    const spy = jest.spyOn(warehouseRepository, 'save');
+
+    await warehouseService.addProduct('id', {
+      name: 'ASd',
+      description: 'description',
+      cost: 12,
+    });
+    expect(spy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        products: [{ cost: 12, description: 'description', name: 'ASd' }],
+      }),
+    );
   });
 });
