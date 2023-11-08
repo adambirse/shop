@@ -13,6 +13,5 @@ export const mapToModel = (warehouseDao: WarehouseDao): Warehouse => {
   const warehouse = new Warehouse([], warehouseDao.capacity);
   warehouse.id = warehouseDao.domainId;
   warehouse.products = warehouseDao.products?.map(mapDaoToModel) ?? [];
-  console.log(warehouse);
   return warehouse;
 };
