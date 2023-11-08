@@ -3,7 +3,7 @@ import { Warehouse } from '../../../domain/model/warehouse/warehouse';
 import { WarehouseRepository } from '../../../domain/repository/warehouseRepository';
 import { AppDataSource } from '../data-source';
 import { WarehouseDao } from '../entities/warehouseDao';
-import { mapToDao, mapToModel } from '../mappers/warehousedaoMapper';
+import { mapToDao, mapToModel } from '../mappers/warehouseDaoMapper';
 
 export class WarehouseTypeORMRepository implements WarehouseRepository {
   async save(warehouse: Warehouse): Promise<Warehouse> {

@@ -1,6 +1,6 @@
 import { Warehouse } from '../../../domain/model/warehouse/warehouse';
 import { WarehouseDao } from '../entities/warehouseDao';
-import { mapDaoToModel, mapProductToDao } from './productdaoMapper';
+import { mapDaoToModel, mapProductToDao } from './productDaoMapper';
 
 //A very simple mapper as Dao and Model are almost identical
 export const mapToDao = (warehouse: Warehouse): WarehouseDao => {
