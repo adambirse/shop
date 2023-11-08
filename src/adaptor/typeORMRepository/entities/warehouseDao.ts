@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductDao } from './productDao';
 
 @Entity('warehouse')
 export class WarehouseDao {
@@ -10,6 +11,11 @@ export class WarehouseDao {
 
   @Column()
   capacity!: number;
+
+  @OneToMany(() => ProductDao, (ProductDao) => ProductDao.warehouse, {
+    cascade: true,
+  })
+  products!: ProductDao[] | undefined;
 
   constructor(domainId: string, capacity: number) {
     this.domainId = domainId;

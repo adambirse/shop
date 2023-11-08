@@ -3,12 +3,23 @@ import { Warehouse } from '../../../domain/model/warehouse/warehouse';
 import { WarehouseRepository } from '../../../domain/repository/warehouseRepository';
 import { AppDataSource } from '../data-source';
 import { WarehouseDao } from '../entities/warehouseDao';
-import { mapToDao, mapToModel } from '../mappers/daoMapper';
+import { mapToDao, mapToModel } from '../mappers/warehousedaoMapper';
 
 export class WarehouseTypeORMRepository implements WarehouseRepository {
   async save(warehouse: Warehouse): Promise<Warehouse> {
     const warehouseRepository = this.getRepository();
-    const createdWarehouse = await warehouseRepository.save(mapToDao(warehouse));
+    const existingWarehouse = await warehouseRepository.findOne({
+      where: {
+        domainId: warehouse.id,
+      },
+      relations: { products: true },
+    });
+    const daoToSave = mapToDao(warehouse);
+    if (existingWarehouse?.id) {
+      daoToSave.id = existingWarehouse.id;
+    }
+
+    const createdWarehouse = await warehouseRepository.save(daoToSave);
     return mapToModel(createdWarehouse);
   }
 
@@ -18,8 +29,11 @@ export class WarehouseTypeORMRepository implements WarehouseRepository {
         where: {
           domainId: id,
         },
+        relations: { products: true },
       })
-      .then((dao) => mapToModel(dao))
+      .then((dao) => {
+        return mapToModel(dao);
+      })
       .catch((e) => {
         console.log('Error finding warehouse', e);
         throw new Error(e);

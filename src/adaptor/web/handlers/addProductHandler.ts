@@ -3,8 +3,8 @@ import { serviceConfiguration } from '../../../service/serviceConfiguration';
 export function addProductHandler() {
   return async (request, reply) => {
     const service = serviceConfiguration().warehouseService;
-    const { warehouseId } = request.body;
-    await service.addProduct(warehouseId, {
+    const { id } = request.body;
+    await service.addProduct(id, {
       name: 'name',
       description: 'description',
       cost: 12,

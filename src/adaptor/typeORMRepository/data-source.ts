@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import { DataSource } from 'typeorm';
 import { WarehouseDao } from './entities/warehouseDao';
+import { ProductDao } from './entities/productDao';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: 'postgres',
   synchronize: true,
   logging: false,
-  entities: [WarehouseDao],
+  entities: [WarehouseDao, ProductDao],
   subscribers: [],
   migrations: [],
 });
