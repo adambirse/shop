@@ -4,6 +4,7 @@ import { WarehouseRepository } from '../domain/repository/warehouseRepository';
 import { create } from '../domain/factory/warehouseFactory';
 import { ModelNotFound } from '../domain/errors/ModelNotFoundError';
 import { AddProductRequest } from '../domain/model/AddProduct';
+import { Product } from '../domain/model/product/product';
 
 // Should never depend on concrete implementations.
 // All imports should be from domain/**
@@ -15,11 +16,7 @@ export class WarehouseService implements Operations {
   }
   async addProduct(warehouseId: string, request: AddProductRequest): Promise<Warehouse> {
     const warehouse = await this.getWarehouse(warehouseId);
-    warehouse.add({
-      name: request.name,
-      description: request.description,
-      cost: request.cost,
-    });
+    warehouse.add(new Product(request.name, request.cost, request.description));
     return this.warehouseRepository.save(warehouse);
   }
 

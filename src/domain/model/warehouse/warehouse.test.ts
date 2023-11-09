@@ -36,6 +36,7 @@ describe('Warehouse', () => {
 function createProducts(noOfProducts: number): Product[] {
   //map function that takes value(_x) and position i and creates object
   const array: Product[] = Array.from({ length: noOfProducts }, (_x, i) => ({
+    id: 'id',
     name: `name ${i}`,
     cost: 12.34,
     description: `description ${i}`,

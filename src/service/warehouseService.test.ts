@@ -51,7 +51,7 @@ describe('Warehouse service', () => {
     });
     expect(spy).toHaveBeenCalledWith(
       expect.objectContaining({
-        products: [{ cost: 12, description: 'description', name: 'ASd' }],
+        products: [expect.objectContaining({ cost: 12, description: 'description', name: 'ASd' })],
       }),
     );
   });
