@@ -7,16 +7,13 @@ import { mapToDao, mapToModel } from '../mappers/warehousedaoMapper';
 
 export class WarehouseTypeORMRepository implements WarehouseRepository {
   async save(warehouse: Warehouse): Promise<Warehouse> {
-    const warehouseRepository = this.getRepository();
-    const existingWarehouse = await warehouseRepository.findOne({
-      where: {
-        domainId: warehouse.id,
-      },
-      relations: { products: true },
-    });
     const daoToSave = mapToDao(warehouse);
-    if (existingWarehouse?.id) {
+    const warehouseRepository = this.getRepository();
+    try {
+      const existingWarehouse = await this.getDao(warehouse.id);
       daoToSave.id = existingWarehouse.id;
+    } catch {
+      console.log('foo');
     }
 
     const createdWarehouse = await warehouseRepository.save(daoToSave);
