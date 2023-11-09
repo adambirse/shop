@@ -23,7 +23,12 @@ export class WarehouseTypeORMRepository implements WarehouseRepository {
     return mapToModel(createdWarehouse);
   }
 
-  get(id: string): Promise<Warehouse> {
+  async get(id: string): Promise<Warehouse> {
+    const dao = this.getDao(id);
+    return mapToModel(await dao);
+  }
+
+  private getDao(id: string): Promise<WarehouseDao> {
     return this.getRepository()
       .findOneOrFail({
         where: {
@@ -32,7 +37,7 @@ export class WarehouseTypeORMRepository implements WarehouseRepository {
         relations: { products: true },
       })
       .then((dao) => {
-        return mapToModel(dao);
+        return dao;
       })
       .catch((e) => {
         console.log('Error finding warehouse', e);
