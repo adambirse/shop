@@ -3,11 +3,8 @@ import { ProductDao } from './productDao';
 
 @Entity('warehouse')
 export class WarehouseDao {
-  @PrimaryGeneratedColumn()
-  id!: number;
-
-  @Column()
-  domainId!: string;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @Column()
   capacity!: number;
@@ -17,8 +14,7 @@ export class WarehouseDao {
   })
   products!: ProductDao[] | undefined;
 
-  constructor(domainId: string, capacity: number) {
-    this.domainId = domainId;
+  constructor(capacity: number) {
     this.capacity = capacity;
   }
 }

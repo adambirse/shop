@@ -9,37 +9,34 @@ export class WarehouseTypeORMRepository implements WarehouseRepository {
   async save(warehouse: Warehouse): Promise<Warehouse> {
     const daoToSave = mapToDao(warehouse);
     const warehouseRepository = this.getRepository();
-    try {
-      const existingWarehouse = await this.getDao(warehouse.id);
-      daoToSave.id = existingWarehouse.id;
-    } catch {
-      console.log('foo');
-    }
 
-    const createdWarehouse = await warehouseRepository.save(daoToSave);
-    return mapToModel(createdWarehouse);
+    const savedWarehouse = await (warehouse.id === undefined
+      ? warehouseRepository.save(daoToSave)
+      : warehouseRepository.save({ ...daoToSave, id: daoToSave.id }));
+
+    return mapToModel(savedWarehouse);
   }
 
   async get(id: string): Promise<Warehouse> {
-    const dao = this.getDao(id);
-    return mapToModel(await dao);
+    const dao = await this.getDao(id);
+    return mapToModel(dao);
   }
 
-  private getDao(id: string): Promise<WarehouseDao> {
-    return this.getRepository()
-      .findOneOrFail({
-        where: {
-          domainId: id,
-        },
+  private async getDao(id: string): Promise<WarehouseDao> {
+    try {
+      const dao = await this.getRepository().findOneOrFail({
+        where: { id },
         relations: { products: true },
-      })
-      .then((dao) => {
-        return dao;
-      })
-      .catch((e) => {
-        console.log('Error finding warehouse', e);
-        throw new Error(e);
       });
+      return dao;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log('Error finding warehouse', error);
+        throw new Error(error.message);
+      } else {
+        throw new Error('An unknown error occurred.');
+      }
+    }
   }
 
   private getRepository(): Repository<WarehouseDao> {

@@ -41,7 +41,6 @@
     "fastify": "^4.15.0",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.12",
-    "uuid": "^9.0.0"
+    "typeorm": "^0.3.12"
   }
 }

@@ -30,7 +30,7 @@ curl --header "Content-Type: application/json" \
 ### Retrieve a warehouse
 
 ```
-curl localhost:8080/warehouse/ecb2c07a-8adb-4403-8884-ce13084fbdaf
+curl localhost:8080/warehouse/6b390fbf-f42f-4789-b9b0-fc021c1a1139
 ```
 
 ### Create a product
@@ -38,6 +38,6 @@ curl localhost:8080/warehouse/ecb2c07a-8adb-4403-8884-ce13084fbdaf
 ```
 curl --header "Content-Type: application/json" \
  --request POST \
- --data '{"id":"ecb2c07a-8adb-4403-8884-ce13084fbdaf"}' \
+ --data '{"id":"6b390fbf-f42f-4789-b9b0-fc021c1a1139"}' \
  http://localhost:8080/warehouse/product
 ```

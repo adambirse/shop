@@ -6,7 +6,6 @@ describe('Product mapper', () => {
   const product: Product = new Product('Name', 45.2, 'A description');
 
   const productDao: ProductDao = {
-    domainId: product.id,
     name: 'Name',
     cost: 45.2,
     description: 'A description',

@@ -6,7 +6,6 @@ describe('warehouse mapper', () => {
 
   it('should map to Dao without any products', () => {
     const warehouseDao = mapToDao(warehouse);
-    expect(warehouseDao.domainId).toEqual(warehouse.id);
     expect(warehouseDao.capacity).toEqual(warehouse.capacity);
     expect(warehouseDao.products).toEqual([]);
   });

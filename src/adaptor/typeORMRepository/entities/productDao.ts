@@ -3,11 +3,8 @@ import { WarehouseDao } from './warehouseDao';
 
 @Entity('product')
 export class ProductDao {
-  @PrimaryGeneratedColumn()
-  id!: number;
-
-  @Column()
-  domainId!: string;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @Column()
   name!: string;
@@ -21,8 +18,7 @@ export class ProductDao {
   @ManyToOne(() => WarehouseDao, (warehouse) => warehouse.products)
   warehouse!: WarehouseDao;
 
-  constructor(domainId: string, name: string, description: string, cost: number) {
-    this.domainId = domainId;
+  constructor(name: string, description: string, cost: number) {
     this.name = name;
     this.description = description;
     this.cost = cost;
