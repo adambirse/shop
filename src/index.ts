@@ -8,6 +8,7 @@ import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler'
 import { addProductHandler } from './adaptor/web/handlers/addProductHandler';
 import { ModelNotFound } from './domain/errors/ModelNotFoundError';
 import { initialiseDB } from './adaptor/typeORMRepository/data-source';
+import { serviceConfiguration } from './service/serviceConfiguration';
 
 const server = Fastify({ logger: true }).withTypeProvider<TypeBoxTypeProvider>();
 
@@ -23,7 +24,7 @@ server.setErrorHandler(function (error, _request, reply) {
 server.post<{ Body: WarehouseCreate; Reply: WarehouseResponse }>(
   '/warehouse',
   warehouseCreateSchema,
-  warehouseCreateHandler(),
+  warehouseCreateHandler(serviceConfiguration().warehouseService),
 );
 server.post<{ Body: ProductCreate }>('/warehouse/product', productCreateSchema, addProductHandler());
 

@@ -1,13 +1,19 @@
-import { serviceConfiguration } from '../../../service/serviceConfiguration';
+import { Operations } from '../../../domain/operations';
 
-export function warehouseCreateHandler() {
-  return async (request, reply) => {
-    const service = serviceConfiguration().warehouseService;
+export const warehouseCreateHandler = (service: Operations) => async (request, reply) => {
+  try {
     const { capacity } = request.body;
     const warehouse = await service.createWarehouse(capacity);
+
     reply.status(200).send({
       capacity: warehouse.capacity,
       id: warehouse.id,
     });
-  };
-}
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      reply.status(500).send({ error: error.message });
+    } else {
+      reply.status(500);
+    }
+  }
+};

@@ -1,8 +1,9 @@
 import { WarehouseTypeORMRepository } from '../adaptor/typeORMRepository/repository/warehouseTypeORMRepository';
+import { Operations } from '../domain/operations';
 import { WarehouseService } from './warehouseService';
 
-interface ServiceConfiguration {
-  warehouseService: WarehouseService;
+export interface ServiceConfiguration {
+  warehouseService: Operations;
 }
 
 let service: ServiceConfiguration;
