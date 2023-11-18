@@ -33,7 +33,7 @@ export class WarehouseTypeORMRepository implements WarehouseRepository {
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log('Error finding warehouse', error);
-        throw new Error(error.message);
+        throw error;
       } else {
         throw new Error('An unknown error occurred.');
       }
