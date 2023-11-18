@@ -34,7 +34,7 @@ afterEach(() => {
 });
 
 describe('warehouseGetHandler', () => {
-  it('should create a warehouse and return the correct response', async () => {
+  it('should get a warehouse and return the correct response', async () => {
     const handler = warehouseGetHandler(mockWarehouseService);
     await handler(mockRequest, mockReply);
 

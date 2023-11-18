@@ -26,7 +26,11 @@ server.post<{ Body: WarehouseCreate; Reply: WarehouseResponse }>(
   warehouseCreateSchema,
   warehouseCreateHandler(serviceConfiguration().warehouseService),
 );
-server.post<{ Body: ProductCreate }>('/warehouse/product', productCreateSchema, addProductHandler());
+server.post<{ Body: ProductCreate }>(
+  '/warehouse/product',
+  productCreateSchema,
+  addProductHandler(serviceConfiguration().warehouseService),
+);
 
 server.get<{ Reply: WarehouseResponse }>(
   '/warehouse/:id',
