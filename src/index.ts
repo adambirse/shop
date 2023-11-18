@@ -28,7 +28,11 @@ server.post<{ Body: WarehouseCreate; Reply: WarehouseResponse }>(
 );
 server.post<{ Body: ProductCreate }>('/warehouse/product', productCreateSchema, addProductHandler());
 
-server.get<{ Reply: WarehouseResponse }>('/warehouse/:id', warehouseGetSchema, warehouseGetHandler());
+server.get<{ Reply: WarehouseResponse }>(
+  '/warehouse/:id',
+  warehouseGetSchema,
+  warehouseGetHandler(serviceConfiguration().warehouseService),
+);
 
 server.listen({ port: 8080 }, (err, address) => {
   if (err) {
