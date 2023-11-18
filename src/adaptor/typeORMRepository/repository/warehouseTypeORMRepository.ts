@@ -1,11 +1,12 @@
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { Warehouse } from '../../../domain/model/warehouse/warehouse';
 import { WarehouseRepository } from '../../../domain/repository/warehouseRepository';
-import { AppDataSource } from '../data-source';
 import { WarehouseDao } from '../entities/warehouseDao';
 import { mapToDao, mapToModel } from '../mappers/warehousedaoMapper';
 
 export class WarehouseTypeORMRepository implements WarehouseRepository {
+  constructor(readonly dataSource: DataSource) {}
+
   async save(warehouse: Warehouse): Promise<Warehouse> {
     const daoToSave = mapToDao(warehouse);
     const warehouseRepository = this.getRepository();
@@ -40,6 +41,6 @@ export class WarehouseTypeORMRepository implements WarehouseRepository {
   }
 
   private getRepository(): Repository<WarehouseDao> {
-    return AppDataSource.getRepository(WarehouseDao);
+    return this.dataSource.getRepository(WarehouseDao);
   }
 }
