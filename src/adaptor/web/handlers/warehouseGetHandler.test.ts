@@ -10,6 +10,7 @@ beforeEach(() => {
   getWarehouse = jest.fn().mockResolvedValue({
     id: 'sample_id',
     capacity: 100,
+    products: [],
   });
   mockWarehouseService = {
     createWarehouse: jest.fn(),
@@ -41,6 +42,7 @@ describe('warehouseGetHandler', () => {
     const expectedResponse = {
       capacity: 100,
       id: 'sample_id',
+      products: [],
     };
     expect(mockWarehouseService.getWarehouse).toHaveBeenCalledWith('sample_id');
     expect(mockReply.status).toHaveBeenCalledWith(200);
