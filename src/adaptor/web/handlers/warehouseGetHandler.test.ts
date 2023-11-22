@@ -1,3 +1,4 @@
+import { Warehouse } from '../../../domain/model/warehouse/warehouse';
 import { Operations } from '../../../domain/operations';
 import { warehouseGetHandler } from './warehouseGetHandler';
 
@@ -5,13 +6,13 @@ let mockWarehouseService: Operations;
 let mockRequest: { params: { id: string } };
 let mockReply: { status: jest.Mock; send: jest.Mock };
 let getWarehouse;
+const sample_id = 'sample_id';
+
+const mockedWarehouse: Warehouse = new Warehouse([], 100);
+mockedWarehouse.id = sample_id;
 
 beforeEach(() => {
-  getWarehouse = jest.fn().mockResolvedValue({
-    id: 'sample_id',
-    capacity: 100,
-    products: [],
-  });
+  getWarehouse = jest.fn().mockResolvedValue(mockedWarehouse);
   mockWarehouseService = {
     createWarehouse: jest.fn(),
     getWarehouse: getWarehouse,
@@ -20,7 +21,7 @@ beforeEach(() => {
 
   mockRequest = {
     params: {
-      id: 'sample_id',
+      id: sample_id,
     },
   };
 
@@ -41,7 +42,7 @@ describe('warehouseGetHandler', () => {
 
     const expectedResponse = {
       capacity: 100,
-      id: 'sample_id',
+      id: sample_id,
       products: [],
     };
     expect(mockWarehouseService.getWarehouse).toHaveBeenCalledWith('sample_id');
