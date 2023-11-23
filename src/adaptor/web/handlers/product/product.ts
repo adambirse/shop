@@ -2,6 +2,9 @@ import { Static, Type } from '@sinclair/typebox';
 
 export const createProductBody = Type.Object({
   id: Type.String(),
+  name: Type.String(),
+  description: Type.String(),
+  cost: Type.Number(),
 });
 
 export const product = Type.Object({

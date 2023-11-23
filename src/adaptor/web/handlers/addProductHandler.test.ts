@@ -3,7 +3,7 @@ import { Operations } from '../../../domain/operations';
 import { addProductHandler } from './addProductHandler';
 
 let mockWarehouseService: Operations;
-let mockRequest: { body: { id: string } };
+let mockRequest: { body: { id: string; name: string; description: string; cost: number } };
 let mockReply: { status: jest.Mock; send: jest.Mock };
 let addProduct;
 const expectedAddProductParameters: AddProductRequest = {
@@ -26,6 +26,9 @@ beforeEach(() => {
   mockRequest = {
     body: {
       id: 'sample_id',
+      name: 'name',
+      description: 'description',
+      cost: 12,
     },
   };
 

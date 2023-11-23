@@ -12,7 +12,7 @@ export class ProductDao {
   @Column()
   description!: string;
 
-  @Column()
+  @Column('decimal', { precision: 10, scale: 2 })
   cost!: number;
 
   @ManyToOne(() => WarehouseDao, (warehouse) => warehouse.products)
