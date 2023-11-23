@@ -4,6 +4,10 @@ export const createProductBody = Type.Object({
   id: Type.String(),
 });
 
+export const product = Type.Object({
+  id: Type.String(),
+});
+
 export const createProductSchema = {
   schema: {
     body: createProductBody,
