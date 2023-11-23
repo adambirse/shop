@@ -6,6 +6,9 @@ export const createProductBody = Type.Object({
 
 export const product = Type.Object({
   id: Type.String(),
+  name: Type.String(),
+  cost: Type.Number(),
+  description: Type.String(),
 });
 
 export const createProductSchema = {
