@@ -1,14 +1,19 @@
 import Fastify from 'fastify';
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 
-import { ProductCreate, WarehouseCreate, WarehouseResponse } from './adaptor/web/handlers/WarehouseCreate';
-import { productCreateSchema, warehouseCreateSchema, warehouseGetSchema } from './adaptor/web/handlers/schema';
 import { warehouseCreateHandler } from './adaptor/web/handlers/warehouseCreateHandler';
 import { warehouseGetHandler } from './adaptor/web/handlers/warehouseGetHandler';
 import { addProductHandler } from './adaptor/web/handlers/addProductHandler';
 import { ModelNotFound } from './domain/errors/ModelNotFoundError';
 import { initialiseDB } from './adaptor/typeORMRepository/data-source';
 import { serviceConfiguration } from './service/serviceConfiguration';
+import {
+  createWarehouseSchema,
+  getWarehouseSchema,
+  createWarehouseType,
+  warehouseType,
+} from './adaptor/web/handlers/warehouse/Warehouse';
+import { ProductCreate, productCreateSchema } from './adaptor/web/handlers/product/product';
 
 const server = Fastify({ logger: true }).withTypeProvider<TypeBoxTypeProvider>();
 
@@ -21,9 +26,9 @@ server.setErrorHandler(function (error, _request, reply) {
   }
 });
 
-server.post<{ Body: WarehouseCreate; Reply: WarehouseResponse }>(
+server.post<{ Body: createWarehouseType; Reply: warehouseType }>(
   '/warehouse',
-  warehouseCreateSchema,
+  createWarehouseSchema,
   warehouseCreateHandler(serviceConfiguration().warehouseService),
 );
 server.post<{ Body: ProductCreate }>(
@@ -32,9 +37,9 @@ server.post<{ Body: ProductCreate }>(
   addProductHandler(serviceConfiguration().warehouseService),
 );
 
-server.get<{ Reply: WarehouseResponse }>(
+server.get<{ Reply: warehouseType }>(
   '/warehouse/:id',
-  warehouseGetSchema,
+  getWarehouseSchema,
   warehouseGetHandler(serviceConfiguration().warehouseService),
 );
 
