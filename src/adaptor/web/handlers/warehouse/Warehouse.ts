@@ -1,4 +1,5 @@
 import { Static, Type } from '@sinclair/typebox';
+import { createProductBody } from '../product/product';
 
 export const createWarehouseBody = Type.Object({
   capacity: Type.Number(),
@@ -7,6 +8,7 @@ export const createWarehouseBody = Type.Object({
 export const warehouseResponse = Type.Object({
   id: Type.String(),
   capacity: Type.Number(),
+  products: Type.Array(createProductBody),
 });
 
 export const getWarehouseSchema = {

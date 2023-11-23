@@ -1,6 +1,6 @@
 import { Static, Type } from '@sinclair/typebox';
 
-const createProductBody = Type.Object({
+export const createProductBody = Type.Object({
   id: Type.String(),
 });
 
