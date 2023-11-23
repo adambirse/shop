@@ -1,13 +1,13 @@
 import { Static, Type } from '@sinclair/typebox';
 
-const ProductRequest = Type.Object({
+const createProductBody = Type.Object({
   id: Type.String(),
 });
 
-export const productCreateSchema = {
+export const createProductSchema = {
   schema: {
-    body: ProductRequest,
+    body: createProductBody,
   },
 };
 
-export type ProductCreate = Static<typeof ProductRequest>;
+export type createProductType = Static<typeof createProductBody>;

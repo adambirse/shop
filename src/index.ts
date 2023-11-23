@@ -13,7 +13,7 @@ import {
   createWarehouseType,
   warehouseType,
 } from './adaptor/web/handlers/warehouse/Warehouse';
-import { ProductCreate, productCreateSchema } from './adaptor/web/handlers/product/product';
+import { createProductType, createProductSchema } from './adaptor/web/handlers/product/product';
 
 const server = Fastify({ logger: true }).withTypeProvider<TypeBoxTypeProvider>();
 
@@ -31,9 +31,9 @@ server.post<{ Body: createWarehouseType; Reply: warehouseType }>(
   createWarehouseSchema,
   warehouseCreateHandler(serviceConfiguration().warehouseService),
 );
-server.post<{ Body: ProductCreate }>(
+server.post<{ Body: createProductType }>(
   '/warehouse/product',
-  productCreateSchema,
+  createProductSchema,
   addProductHandler(serviceConfiguration().warehouseService),
 );
 
