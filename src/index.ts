@@ -22,6 +22,7 @@ server.setErrorHandler(function (error, _request, reply) {
     reply.status(404).send({ message: error.message });
   } else {
     // Send error response
+    console.log(error);
     reply.status(409).send({ ok: false });
   }
 });

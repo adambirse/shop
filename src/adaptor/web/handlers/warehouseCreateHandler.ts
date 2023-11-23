@@ -8,6 +8,7 @@ export const warehouseCreateHandler = (service: Operations) => async (request, r
     reply.status(200).send({
       capacity: warehouse.capacity,
       id: warehouse.id,
+      products: warehouse.products,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
